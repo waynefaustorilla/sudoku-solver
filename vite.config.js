@@ -5,4 +5,4 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: "https://kuyawayne.github.io/sudoku-solver/",
   plugins: [react()],
-})
+});
