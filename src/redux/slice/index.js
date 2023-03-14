@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Sudoku from "sudoku";
 
 let emptyBoard = {
   board: [
@@ -18,15 +19,21 @@ const sudokuSlice = createSlice({
   name: "board",
   initialState: emptyBoard,
   reducers: {
-    assignToCell: (state, { payload }) => {
-      state.board = payload;
+    populate: (state) => {
+      state.board = emptyBoard;
+      state.board = Sudoku.makepuzzle();
     },
     clearBoard: (state) => {
       state.board = emptyBoard;
+    },
+    assign: (state, { payload }) => {
+      const { index, number } = payload;
+
+      state.board[index] = parseInt(number);
     }
   }
 });
 
-export const { assignToCell, clearBoard } = sudokuSlice.actions;
+export const { populate, clearBoard, assign } = sudokuSlice.actions;
 
 export default sudokuSlice.reducer;
